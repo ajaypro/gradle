@@ -18,7 +18,7 @@ import org.gradle.integtests.fixtures.AbstractIntegrationSpec
 
 class MavenNonUniqueSnapshotPublishIntegrationTest extends AbstractIntegrationSpec {
 
-    public void "can publish a non-unique snapshot version"() {
+    public void "can not publish non-unique snapshots"() {
         given:
         using m2
 
@@ -43,13 +43,14 @@ uploadArchives {
 """
 
         when:
+        executer.expectDeprecationWarning()
         run "uploadArchives"
 
         then:
+        outputContains("The MavenDeployer#setUniqueVersion method has been deprecated")
         def module = mavenRepo.module("org.gradle.test", "publishTest", "4.2-SNAPSHOT")
-        module.withNonUniqueSnapshots()
-
-        module.assertArtifactsPublished("publishTest-4.2-SNAPSHOT.pom", "publishTest-4.2-SNAPSHOT.jar", "maven-metadata.xml")
+        def version = module.publishArtifactVersion
+        module.assertArtifactsPublished("publishTest-${version}.pom", "publishTest-${version}.jar", "maven-metadata.xml")
         module.getParsedPom().version == '4.2-SNAPSHOT'
     }
 }

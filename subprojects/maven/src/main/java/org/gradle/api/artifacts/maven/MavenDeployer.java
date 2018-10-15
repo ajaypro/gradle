@@ -71,14 +71,18 @@ public interface MavenDeployer extends MavenResolver {
     void addProtocolProviderJars(Collection<File> jars);
 
     /**
-     * Returns whether to assign snapshots a unique version comprised of the timestamp and build number, or to use the
-     * same version each time. Defaults to true.
+     * This method no longer has any effect.
+     *
+     * @deprecated without replacement, Gradle no longer supports legacy Maven 2 metadata.
      */
+    @Deprecated
     boolean isUniqueVersion();
 
     /**
-     * Sets whether to assign snapshots a unique version comprised of the timestamp and build number, or to use the same
-     * version each time. Defaults to true.
+     * This method no longer has any effect.
+     *
+     * @deprecated without replacement, Gradle no longer supports legacy Maven 2 metadata.
      */
+    @Deprecated
     void setUniqueVersion(boolean uniqueVersion);
 }

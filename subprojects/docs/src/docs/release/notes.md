@@ -370,6 +370,10 @@ Checkstyle configuration files in subprojects — the old by-convention location
 via [`checkstyle.configDir`](dsl/org.gradle.api.plugins.quality.CheckstyleExtension.html#org.gradle.api.plugins.quality.CheckstyleExtension:configDir)
 or [`checkstyle.config`](dsl/org.gradle.api.plugins.quality.CheckstyleExtension.html#org.gradle.api.plugins.quality.CheckstyleExtension:config).
 
+### `maven` plugin now publishes Maven 3 metadata
+
+The `maven` plugin used to publish the highly outdated Maven 2 metadata format. This has been changed and it will now publish Maven 3 metadata, just like the `maven-publish` plugin.
+
 ### Updated default tool versions
 
 The default tool versions of the following code quality plugins have been updated:
